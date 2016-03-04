@@ -1,0 +1,241 @@
+body {
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  margin: 0 auto;
+}
+
+/* General: Remove styling from all list and hyperlink items*/
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  style: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h5 {
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: #EDEDED;
+}
+
+/* <== Styling: Header ==> */
+
+.header-container {
+  display: block;
+  width: 100%;
+}
+
+.topbar {
+  font: 1em Courier, monospace;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid black;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  align-items: center;
+}
+
+/*Distance exaagerated for clarity for this task*/
+div.topbar ul li {
+  height: 100%;
+  margin: 0vw 10vw 0vw 10vw;
+  color: black;
+}
+
+li .fa {
+  color: black;
+}
+
+.align-left {
+  justify-content: space-around;
+  text-align: left;
+}
+
+.align-right {
+  justify-content: space-around;
+}
+
+
+/*Styling: Event Buttons*/
+.events-button {
+  margin-left: 10px;
+  font: 1em Courier, monospace;
+  background-color: #ffc444;
+  line-height: 25px;
+  margin-left: 0px;
+  border: 1px solid #B8B8B8;
+  border-radius: 0px;
+  display: block;
+  margin: 10px;
+  width: 200px;
+}
+
+#requester-name {
+  line-height: 15px;
+  margin-right: 0px;
+  padding: 5px 0px 5px 0px;
+  border: 1px solid #B8B8B8;
+  width: 200px;
+}
+
+#input-container {
+  border: 1px solid black;
+}
+
+/*<== Styling: Notification ==> */
+
+div.notifications {
+  background-color:: white;
+}
+
+
+/* <== Styling: Homepage and overall layout ==> */
+
+.body-container {
+  font: 1em "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: block;
+  width: 100vw;
+  height: 92vh;
+  margin-top: 50px;
+  /*Note: margin-top = header-container height to provide spacing*/
+  text-align: center;
+  color: black;
+  padding-top: 5vh;
+}
+
+
+@media (max-width: 560px) {
+  .body-container {
+    width: 100vw;
+    height: 92vh;
+    margin-top: 10vh;
+    text-align: center;
+  }
+}
+
+@media (max-width: 730px) {
+  .body-container {
+    width: 100vw;
+    height: 92vh;
+    margin-top: 10vh;
+    text-align: center;
+  }
+}
+
+div.topbar ul li {
+  display: inline;
+  margin-right: 2vh;
+  text-align: center;
+}
+
+.content-container {
+  background: white;
+  text-align: center;
+  align-content: center;
+  margin-bottom: 10vh;
+  margin-top: 10vh;
+}
+
+#homepage-container {
+  width: 80vw;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentContainer h2 {
+  font: 1.5em Courier, monospace;
+  font-weight: bold;
+}
+
+.contentContainer p {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+
+/*<== Styling for Layout==>*/
+
+#container-top {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+#container-main {
+  display: inline;
+  width: 85vw;
+  min-width: 80%;
+  height: 100%;
+}
+
+#container-rightside {
+  display: inline;
+  width: 15vw;
+  min-width: 100px;
+  background-color: black;
+  position: absolute;
+  right: 0px;
+}
+
+#container-bottom {
+  /*width: 100%;*/
+  background-color: lightgrey;
+  position: absolute;
+  top: 90vh;
+  height: 100%;
+}
+
+#container-main h1 {
+  text-align: left;
+  margin-left: 5vw;
+}
+
+#container-bottom h1 {
+  text-align: left;
+  margin-left: 5vw;
+}
+
+/* Dragula CSS */
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
