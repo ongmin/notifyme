@@ -8,9 +8,9 @@ var _ = require('lodash')
 var CHANGE_EVENT = 'change'
 
 var _messages = []
-var _messageCount = null
-var _notificationCount = null
-var _requestCount = null
+var _messageCount
+var _notificationCount
+var _requestCount
 
 var Store = assign({}, EventEmitter.prototype, {
 
@@ -54,6 +54,9 @@ Dispatcher.register(function (action) {
     // For Post Updating
     case ActionTypes.INITIALIZE:
       _messages = action.initialData.messages
+      _messageCount = action.initialData.messageCount
+      _notificationCount = action.initialData.notificationCount
+      _requestCount = action.initialData.requestCount
       Store.emitChange()
       break
 

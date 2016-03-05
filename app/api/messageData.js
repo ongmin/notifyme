@@ -10,9 +10,9 @@ module.exports = {
   ],
 
   tally: [
-    { id: 'messageCount', value: '2' },
-    { id: 'requestCount', value: '5' },
-    { id: 'notificationCount', value: '8' }
+    { id: 'messageCount', value: '0' },
+    { id: 'requestCount', value: '0' },
+    { id: 'notificationCount', value: '0' }
 
   ]
 }

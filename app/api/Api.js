@@ -4,6 +4,10 @@
 var messages = require('./messageData').messages
 var tally = require('./messageData').tally
 
+// var messageCount
+// var requestCount
+// var notificationCount
+
 var _ = require('lodash')
 
 var _clone = function (item) {

@@ -11,11 +11,15 @@ var Home = React.createClass({
     return {
       messages: Store.getAllMessages(),
       messageCount: Store.getMessageCount(),
-      requestCount: Store.getMessageCount(),
-      notificationCount: Store.getMessageCount()
+      requestCount: Store.getRequestCount(),
+      notificationCount: Store.getNotificationCount()
     }
   },
   _notificationSystem: null,
+
+  updateCount: function () {
+    this.setState({ messageCount: this.state.messageCount })
+  },
 
   getMessageById: function (id) {
     return _.find(this.state.messages, {id: id})
@@ -43,33 +47,40 @@ var Home = React.createClass({
   },
 
   addMessageCount: function () {
-    console.log(this.state.messageCount)
+    console.log('home1 ' + this.state.messageCount)
     var countNow = this.state.messageCount
-    this.setState({messageCount: countNow + 1})
+    this.setState({messageCount: parseInt(countNow, 10) + 1})
     Actions.updateMessageCount(this.state.messageCount)
+    console.log('home2 ' + this.state.messageCount)
   },
 
   addRequestCount: function () {
-    console.log(this.state.requestCount)
+    console.log('home ' + this.state.requestCount)
     var countNow = this.state.requestCount
-    this.setState({requestCount: countNow + 1})
+    this.setState({requestCount: parseInt(countNow, 10) + 1})
     Actions.updateMessageCount(this.state.requestCount)
   },
 
   addNotificationCount: function () {
-    console.log(this.state.notificationCount)
+    console.log('home ' + this.state.notificationCount)
     var countNow = this.state.notificationCount
-    this.setState({notificationCount: countNow + 1})
+    this.setState({notificationCount: parseInt(countNow, 10) + 1})
+    console.log('notif' + typeof countNow)
     Actions.updateMessageCount(this.state.notificationCount)
   },
 
   resetCount: function () {
-    this.setState({count: null})
+    this.setState({
+      messageCount: null,
+      requestCount: null,
+      notificationCount: null
+    })
   },
 
   demoMessage: function (event) {
     this.genericNotification(event)
     this.addMessageCount()
+    // this.updateCount()
   },
 
   demoRequest: function (event) {
@@ -103,8 +114,11 @@ var Home = React.createClass({
 
             <NotificationSystem ref='notificationSystem' />
 
+              <p>Message count: {this.state.messageCount}</p>
+              <p>Request count: {this.state.requestCount}</p>
+              <p>Notification count: {this.state.notificationCount}</p>
+
             <button className='events-button' id='message-new' onClick={this.demoMessage}>New Message</button>
-            <span>{this.state.messageCount}</span>
             <button className='events-button' id='bat-update' onClick={this.demoNotification}>Updates from BAT</button>
             <button className='events-button' id='booking-new' onClick={this.demoRequest}>New Booking Request</button>
             <button className='events-button' id='booking-accepted' onClick={this.demoNotification}>Booking Status Change - Accepted</button>
