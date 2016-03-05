@@ -9,7 +9,10 @@ var InitializeActions = {
     Dispatcher.dispatch({
       actionType: ActionTypes.INITIALIZE,
       initialData: {
-        messages: Api.getAllMessages()
+        messages: Api.getAllMessages(),
+        messageCount: Api.getMessageCount(),
+        requestCount: Api.getRequestCount(),
+        notificationCount: Api.getNotificationCount()
       }
     })
   }

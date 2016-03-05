@@ -32,6 +32,18 @@ var Store = assign({}, EventEmitter.prototype, {
 
   getMessageById: function (id) {
     return _.find(_messages, {id: id})
+  },
+
+  getMessageCount: function () {
+    return _messageCount
+  },
+
+  getRequestCount: function () {
+    return _requestCount
+  },
+
+  getNotificationCount: function () {
+    return _notificationCount
   }
 
 })

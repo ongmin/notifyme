@@ -7,5 +7,12 @@ module.exports = {
     { id: 'booking-rejected', title: 'Booking Rejected', content: 'Sorry your booking has been rejected, how about trying another host?', level: 'warning' },
     { id: 'request-new', title: 'Request Received', content: ' wants to dine with you.', level: 'success' },
     { id: 'bat-update', title: 'BAT Update', content: 'We have a new feature!', level: 'info' }
+  ],
+
+  tally: [
+    { id: 'messageCount', value: '2' },
+    { id: 'requestCount', value: '5' },
+    { id: 'notificationCount', value: '8' }
+
   ]
 }

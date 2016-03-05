@@ -6,24 +6,13 @@ var _ = require('lodash')
 var Store = require('../stores/store')
 var Actions = require('../actions/Actions')
 
-// Data placed here instead of in Store for simplicity of demo, otherwise just replace with Store.function()
-// var messages = [
-//   { id: 'message-new', title: 'New Message', content: 'You have a new message.', level: 'info' },
-//   { id: 'booking-new', title: 'Request Created', content: 'Your booking has been created and is pending the approval from the host.', level: 'info' },
-//   { id: 'booking-update', title: 'Booking Updated', content: 'There has been an update to your booking.', level: 'info' },
-//   { id: 'booking-accepted', title: 'Booking Accepted', content: 'Yeay! Your booking has been accepted.', level: 'success' },
-//   { id: 'booking-rejected', title: 'Booking Rejected', content: 'Sorry your booking has been rejected, how about trying another host?', level: 'warning' },
-//   { id: 'request-new', title: 'Request Received', content: ' wants to dine with you.', level: 'success' },
-//   { id: 'bat-update', title: 'BAT Update', content: 'We have a new feature!', level: 'info' }
-// ]
-
-// var messages = null
-
 var Home = React.createClass({
   getInitialState: function () {
     return {
       messages: Store.getAllMessages(),
-      messageCount: 1
+      messageCount: Store.getMessageCount(),
+      requestCount: Store.getMessageCount(),
+      notificationCount: Store.getMessageCount()
     }
   },
   _notificationSystem: null,
@@ -35,7 +24,6 @@ var Home = React.createClass({
   genericNotification: function (event) {
     event.preventDefault()
     var msg = this.getMessageById(event.target.id)
-    console.log(JSON.stringify(this.state.messages))
     this._notificationSystem.addNotification({
       title: msg.title,
       message: msg.content,
@@ -47,7 +35,6 @@ var Home = React.createClass({
     event.preventDefault()
     var requester = window.document.getElementById('requester-name').value
     var msg = this.getMessageById(event.target.id)
-    console.log(this.state.messages)
     this._notificationSystem.addNotification({
       title: msg.title,
       message: requester + msg.content,
@@ -55,24 +42,49 @@ var Home = React.createClass({
     })
   },
 
-  countUp: function () {
+  addMessageCount: function () {
+    console.log(this.state.messageCount)
     var countNow = this.state.messageCount
     this.setState({messageCount: countNow + 1})
     Actions.updateMessageCount(this.state.messageCount)
+  },
+
+  addRequestCount: function () {
+    console.log(this.state.requestCount)
+    var countNow = this.state.requestCount
+    this.setState({requestCount: countNow + 1})
+    Actions.updateMessageCount(this.state.requestCount)
+  },
+
+  addNotificationCount: function () {
+    console.log(this.state.notificationCount)
+    var countNow = this.state.notificationCount
+    this.setState({notificationCount: countNow + 1})
+    Actions.updateMessageCount(this.state.notificationCount)
   },
 
   resetCount: function () {
     this.setState({count: null})
   },
 
-  genericClick: function (event) {
-    this.customNotification(event)
-    this.countUp()
+  demoMessage: function (event) {
+    this.genericNotification(event)
+    this.addMessageCount()
+  },
+
+  demoRequest: function (event) {
+    this.genericNotification(event)
+    this.addRequestCount()
+  },
+
+  demoNotification: function (event) {
+    this.genericNotification(event)
+    this.addNotificationCount()
   },
 
   customClick: function (event) {
-    this.genericNotification(event)
-    this.countUp()
+    this.customNotification(event)
+    this.addRequestCount()
   },
 
   componentDidMount: function () {
@@ -91,12 +103,12 @@ var Home = React.createClass({
 
             <NotificationSystem ref='notificationSystem' />
 
-            <button className='events-button' id='bat-update' onClick={this.genericClick}>Updates from BAT</button>
-            <button className='events-button' id='message-new' onClick={this.genericClick}>New Message</button>
+            <button className='events-button' id='message-new' onClick={this.demoMessage}>New Message</button>
             <span>{this.state.messageCount}</span>
-          <button className='events-button' id='booking-new' onClick={this.genericClick}>New Booking Request</button>
-            <button className='events-button' id='booking-accepted' onClick={this.genericClick}>Booking Status Change - Accepted</button>
-            <button className='events-button' id='booking-update' onClick={this.genericClick}>Booking Status Change - Paid</button>
+            <button className='events-button' id='bat-update' onClick={this.demoNotification}>Updates from BAT</button>
+            <button className='events-button' id='booking-new' onClick={this.demoRequest}>New Booking Request</button>
+            <button className='events-button' id='booking-accepted' onClick={this.demoNotification}>Booking Status Change - Accepted</button>
+            <button className='events-button' id='booking-update' onClick={this.demoNotification}>Booking Status Change - Paid</button>
 
             <div id='input-container'>
               <h5>Input Requester Name</h5>
