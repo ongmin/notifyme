@@ -61,7 +61,7 @@ Dispatcher.register(function (action) {
       break
 
     case ActionTypes.UPDATE_MESSAGE_COUNT:
-      _messageCount = action.messageCount
+      // _messageCount = action.messageCount
       Store.emitChange()
       break
 

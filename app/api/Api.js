@@ -25,11 +25,13 @@ var Api = {
   },
 
   updateMessageCount: function (count) {
-    var existingMessageIndex = _.indexOf(tally, _.find(tally, { id: count.id }))
-    console.log(count)
-    tally.splice(existingMessageIndex, 1, count)
-    var messageCount = _.find(tally, {id: 'messageCount'})
-    return messageCount.value
+    _.updateWith(tally, '[messageCount]', _.constant(count), Object)
+    console.log('api count:' + count)
+
+    // var existingMessageIndex = _.indexOf(tally, _.find(tally, { id: count.id }))
+    // tally.splice(existingMessageIndex, 1, count)
+    // var messageCount = _.find(tally, {id: 'messageCount'})
+    return 20
   },
 
   getMessageCount: function () {

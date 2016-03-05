@@ -6,9 +6,9 @@ var Link = Router.Link
 
 var Header = React.createClass({
   propTypes: {
-    messageCount: React.PropTypes.number,
-    requestCount: React.PropTypes.number,
-    notificationCount: React.PropTypes.number
+    messageCount: React.PropTypes.any,
+    requestCount: React.PropTypes.any,
+    notificationCount: React.PropTypes.any
   },
 
   render: function () {

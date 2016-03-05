@@ -1,29 +1,26 @@
 
 var React = require('react')
-var Header = require('./common/header')
+// var _ = require('lodash')
+var Store = require('../stores/store')
+// var Actions = require('../actions/Actions')
 var RouteHandler = require('react-router').RouteHandler
+var Header = require('./common/header')
 
 var App = React.createClass({
   getInitialState: function () {
     return {
-      messageCount: 5,
-      notificationCount: 5,
-      requestCount: 10
+      messages: Store.getAllMessages(),
+      messageCount: Store.getMessageCount(),
+      requestCount: Store.getRequestCount(),
+      notificationCount: Store.getNotificationCount()
     }
   },
 
   render: function () {
     return (
       <div>
-        <div className='header-container'>
-        <Header
-          messageCount={this.state.messageCount}
-          notificationCount={this.state.notificationCount}
-          requestCount={this.state.requestCount} />
-
-        </div>
         <div className='body-container'>
-        <RouteHandler/>
+        <RouteHandler />
         </div>
       </div>
     )

@@ -6,10 +6,6 @@ var ActionTypes = require('./actionTypes')
 
 var Actions = {
 
-  initialize: function () {
-
-  },
-
   updateMessageCount: function (count) {
     Dispatcher.dispatch({
       actionType: ActionTypes.UPDATE_MESSAGE_COUNT,

@@ -1,10 +1,12 @@
 'use strict'
 
 var React = require('react')
-var NotificationSystem = require('react-notification-system')
 var _ = require('lodash')
 var Store = require('../stores/store')
 var Actions = require('../actions/Actions')
+var NotificationSystem = require('react-notification-system')
+var Header = require('./common/header')
+
 
 var Home = React.createClass({
   getInitialState: function () {
@@ -16,10 +18,6 @@ var Home = React.createClass({
     }
   },
   _notificationSystem: null,
-
-  updateCount: function () {
-    this.setState({ messageCount: this.state.messageCount })
-  },
 
   getMessageById: function (id) {
     return _.find(this.state.messages, {id: id})
@@ -47,39 +45,35 @@ var Home = React.createClass({
   },
 
   addMessageCount: function () {
-    console.log('home1 ' + this.state.messageCount)
     var countNow = this.state.messageCount
     this.setState({messageCount: parseInt(countNow, 10) + 1})
     Actions.updateMessageCount(this.state.messageCount)
-    console.log('home2 ' + this.state.messageCount)
   },
 
   addRequestCount: function () {
-    console.log('home ' + this.state.requestCount)
     var countNow = this.state.requestCount
     this.setState({requestCount: parseInt(countNow, 10) + 1})
     Actions.updateMessageCount(this.state.requestCount)
   },
 
   addNotificationCount: function () {
-    console.log('home ' + this.state.notificationCount)
     var countNow = this.state.notificationCount
     this.setState({notificationCount: parseInt(countNow, 10) + 1})
-    console.log('notif' + typeof countNow)
     Actions.updateMessageCount(this.state.notificationCount)
   },
 
   resetCount: function () {
     this.setState({
-      messageCount: null,
-      requestCount: null,
-      notificationCount: null
+      messageCount: Store.getMessageCount(),
+      requestCount: Store.getRequestCount(),
+      notificationCount: Store.getNotificationCount()
     })
   },
 
   demoMessage: function (event) {
     this.genericNotification(event)
     this.addMessageCount()
+    // Leaving out updating API in order to continue using this API for demo at value 0
     // this.updateCount()
   },
 
@@ -104,6 +98,14 @@ var Home = React.createClass({
 
   render: function () {
     return (
+      <div>
+      <div className='header-container'>
+      <Header
+        messageCount={this.state.messageCount}
+        notificationCount={this.state.notificationCount}
+        requestCount={this.state.requestCount} />
+      </div>
+
         <div className='content-container'>
 
           <h2>Welcome to BAT!</h2>
@@ -130,7 +132,12 @@ var Home = React.createClass({
               <button className='events-button' id='request-new' onClick={this.customClick}>New Inquiry</button>
             </div>
 
+            <div id='input-container'>
+              <button className='events-button' id='reset' onClick={this.resetCount}>Reset All</button>
+            </div>
+
         </div>
+      </div>
       </div>
     )
   }
