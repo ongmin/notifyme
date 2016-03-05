@@ -1,10 +1,15 @@
 'use strict'
 
 var React = require('react')
+var Header = require('../common/header')
 
 var About = React.createClass({
   render: function () {
     return (
+      <div>
+      <div className='header-container'>
+      <Header />
+      </div>
 
       <div className='bodyContainer'>
         <div className='contentContainer'>
@@ -22,6 +27,7 @@ var About = React.createClass({
         </p>
       </div>
     </div>
+  </div>
     )
   }
 })

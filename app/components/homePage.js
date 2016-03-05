@@ -7,7 +7,6 @@ var Actions = require('../actions/Actions')
 var NotificationSystem = require('react-notification-system')
 var Header = require('./common/header')
 
-
 var Home = React.createClass({
   getInitialState: function () {
     return {

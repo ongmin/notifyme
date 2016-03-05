@@ -4,7 +4,6 @@ var React = require('react')
 var Store = require('../stores/store')
 // var Actions = require('../actions/Actions')
 var RouteHandler = require('react-router').RouteHandler
-var Header = require('./common/header')
 
 var App = React.createClass({
   getInitialState: function () {
