@@ -1,16 +1,16 @@
 'use strict'
 
-var Dispatcher = require('../dispatcher/appDispatcher')
-var ActionTypes = require('../constants/actionTypes')
+var Dispatcher = require('../actions/appDispatcher')
+var ActionTypes = require('../actions/actionTypes')
 var EventEmitter = require('events').EventEmitter
 var assign = require('object-assign')
 var _ = require('lodash')
 var CHANGE_EVENT = 'change'
 
 var _messages = []
-var messageCount = null
-var notificationCount = null
-var requestCount = null
+var _messageCount = null
+var _notificationCount = null
+var _requestCount = null
 
 var Store = assign({}, EventEmitter.prototype, {
 
@@ -32,10 +32,8 @@ var Store = assign({}, EventEmitter.prototype, {
 
   getMessageById: function (id) {
     return _.find(_messages, {id: id})
-  },
-
-
   }
+
 })
 
 Dispatcher.register(function (action) {
@@ -44,17 +42,22 @@ Dispatcher.register(function (action) {
     // For Post Updating
     case ActionTypes.INITIALIZE:
       _messages = action.initialData.messages
-      MessageStore.emitChange()
+      Store.emitChange()
       break
-    case ActionTypes.CREATE_MESSAGE:
-      _messages.push(action.message)
-      MessageStore.emitChange()
+
+    case ActionTypes.UPDATE_MESSAGE_COUNT:
+      _messageCount = action.messageCount
+      Store.emitChange()
       break
-    case ActionTypes.UPDATE_MESSAGE:
-      var existingMessage = _.find(_messages, {id: action.message.id})
-      var existingMessageIndex = _.indexOf(_messages, existingMessage)
-      _messages.splice(existingMessageIndex, 1, action.message)
-      MessageStore.emitChange()
+
+    case ActionTypes.UPDATE_REQUEST_COUNT:
+      _requestCount = action.requestCount
+      Store.emitChange()
+      break
+
+    case ActionTypes.UPDATE_NOTIFICATION_COUNT:
+      _notificationCount = action.notificationCount
+      Store.emitChange()
       break
 
     default:
