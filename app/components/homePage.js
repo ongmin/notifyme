@@ -3,6 +3,8 @@
 var React = require('react')
 var NotificationSystem = require('react-notification-system')
 var _ = require('lodash')
+// var Count = require('../../lib/Count')
+
 
 // Data placed here instead of in Store for simplicity of demo, otherwise just replace with Store.function()
 var messages = [
@@ -16,7 +18,11 @@ var messages = [
 ]
 
 var Home = React.createClass({
-
+  getInitialState: function () {
+    return {
+      count: 1
+    }
+  },
   _notificationSystem: null,
 
   getMessageById: function (id) {
@@ -44,6 +50,26 @@ var Home = React.createClass({
     })
   },
 
+  countUp: function () {
+    var countNow = this.state.count
+    this.setState({count: countNow + 1})
+    Store.updateCount(count)
+  },
+
+  resetCount: function () {
+    this.setState({count: null})
+  },
+
+  genericClick: function (event) {
+    this.customNotification(event)
+    this.countUp()
+  },
+
+  customClick: function (event) {
+    this.genericNotification(event)
+    this.countUp()
+  },
+
   componentDidMount: function () {
     this._notificationSystem = this.refs.notificationSystem
   },
@@ -60,16 +86,16 @@ var Home = React.createClass({
 
             <NotificationSystem ref='notificationSystem' />
 
-            <button className='events-button' id='bat-update' onClick={this.genericNotification}>Updates from BAT</button>
-            <button className='events-button' id='message-new' onClick={this.genericNotification}>New Message</button>
-            <button className='events-button' id='booking-new' onClick={this.genericNotification}>New Booking Request</button>
-            <button className='events-button' id='booking-accepted' onClick={this.genericNotification}>Booking Status Change - Accepted</button>
-            <button className='events-button' id='booking-update' onClick={this.genericNotification}>Booking Status Change - Paid</button>
+            <button className='events-button' id='bat-update' onClick={this.genericClick}>Updates from BAT</button>
+            <button className='events-button' id='message-new' onClick={this.genericClick}>New Message</button>
+            <button className='events-button' id='booking-new' onClick={this.genericClick}>New Booking Request</button>
+            <button className='events-button' id='booking-accepted' onClick={this.genericClick}>Booking Status Change - Accepted</button>
+            <button className='events-button' id='booking-update' onClick={this.genericClick}>Booking Status Change - Paid</button>
 
             <div id='input-container'>
               <h5>Input Requester Name</h5>
               <input id='requester-name' placeholder='Type name of Requester' onChange={this.handleChange}/>
-              <button className='events-button' id='request-new' onClick={this.customNotification}>New Inquiry</button>
+              <button className='events-button' id='request-new' onClick={this.customClick}>New Inquiry</button>
             </div>
 
         </div>

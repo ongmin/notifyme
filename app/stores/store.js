@@ -8,6 +8,9 @@ var _ = require('lodash')
 var CHANGE_EVENT = 'change'
 
 var _messages = []
+var messageCount = null
+var notificationCount = null
+var requestCount = null
 
 var Store = assign({}, EventEmitter.prototype, {
 
@@ -29,6 +32,9 @@ var Store = assign({}, EventEmitter.prototype, {
 
   getMessageById: function (id) {
     return _.find(_messages, {id: id})
+  },
+
+
   }
 })
 

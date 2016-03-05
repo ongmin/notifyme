@@ -38,6 +38,15 @@ h5 {
   width: 100%;
 }
 
+.align-left {
+  justify-content: space-around;
+  text-align: left;
+}
+
+.align-right {
+  justify-content: space-around;
+}
+
 .topbar {
   font: 1em Courier, monospace;
   background: rgba(255,255,255,0.5);
@@ -55,26 +64,43 @@ h5 {
 
 /*Distance exaagerated for clarity for this task*/
 div.topbar ul li {
+  display: inline;
+  /*margin-right: 2vw;*/
+  text-align: center;
   height: 100%;
-  margin: 0vw 10vw 0vw 10vw;
+  margin: 0vw 5vw 0vw 5vw;
   color: black;
+}
+
+div.topbar ul li :hover {
+  font-size: 1.1em;
+  color: orange;
 }
 
 li .fa {
   color: black;
 }
 
-.align-left {
-  justify-content: space-around;
-  text-align: left;
+.count {
+  position: relative;
+  top: -1em;
+  right: 4vw;
+  font-size: 12px;
+  color: black;
+  margin-left: -20px;
+  border-radius: 50px;
+  border: 1px solid #C7C7C7;
+  background-color: rgba(255, 195, 133, 0.52);
+  height: 15px;
+  width: 20px;
+  display: inline-block;
+  text-align: center;
 }
 
-.align-right {
-  justify-content: space-around;
-}
 
 
-/*Styling: Event Buttons*/
+
+/*<== Styling: Event Button ==>s*/
 .events-button {
   margin-left: 10px;
   font: 1em Courier, monospace;
@@ -103,8 +129,10 @@ li .fa {
 /*<== Styling: Notification ==> */
 
 div.notifications {
-  background-color:: white;
 }
+
+
+
 
 
 /* <== Styling: Homepage and overall layout ==> */
@@ -138,12 +166,6 @@ div.notifications {
     margin-top: 10vh;
     text-align: center;
   }
-}
-
-div.topbar ul li {
-  display: inline;
-  margin-right: 2vh;
-  text-align: center;
 }
 
 .content-container {
