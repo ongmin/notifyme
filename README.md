@@ -1,6 +1,7 @@
 # notifyme
 
-Build by Min for the B.A.T. team as a Front-end task.
+Built to enable notifications in a React App.
+
 
 ## Usage
 
